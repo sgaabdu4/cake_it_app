@@ -29,8 +29,9 @@ class _CakeListViewState extends State<CakeListView> {
     fetchCakes();
   }
 
-  // TODO(Abid): Should this be a separate service class? Need error handling
+  // TODO(Abid): Should this be a separate service class?
   // TODO(Abid): No separation of concerns... API call in the widget
+  // TODO(Abid): No try catch for loading and also failed requests
   Future<void> fetchCakes() async {
     // TODO(Abid): API URL should be moved to config file
     final url = Uri.parse(
@@ -65,6 +66,7 @@ class _CakeListViewState extends State<CakeListView> {
           ),
         ],
       ),
+      // TODO(Abid): No loading state shown when fetching data
       body: ListView.builder(
         restorationId: 'cakeListView',
         itemCount: cakes.length,
@@ -76,13 +78,15 @@ class _CakeListViewState extends State<CakeListView> {
               subtitle: Text('${cake.description}'),
               // TODO(Abid): Should the image be loading when fetching?
               leading: CircleAvatar(
+                // TODO(Abid): Would container with decoration be better?
                 child: Image.network(
                   cakes[index]
                       .image!, // TODO(Abid): Why are we using ! here? Need to implement loading or error handling
+                  // TODO(Abid): Missing error and loading for network image
                 ),
               ),
               onTap: () {
-                // TODO(Abid):Why is this hard coded in?
+                // TODO(Abid): Should pass actual cake data instead of hardcoded values
                 Navigator.restorablePushNamed(
                   context,
                   CakeDetailsView.routeName,

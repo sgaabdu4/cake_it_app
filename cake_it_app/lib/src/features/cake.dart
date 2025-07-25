@@ -18,6 +18,7 @@ class Cake {
       description: json['desc'],
       image: json['image'],
     );
+    // TODO(Abid): No validation or sanitisation
   }
 
   Map<String, dynamic> toJson() {

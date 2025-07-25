@@ -14,6 +14,7 @@ class CakeDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     //TODO(Abid): Should Cake.fromJson be used here? Should it be a separate service class?
+    // TODO(Abid): No null check so could crash
     Cake cake = Cake.fromJson(args);
     // TODO(Abid): Should the image be displayed here?
     return Scaffold(
@@ -28,6 +29,7 @@ class CakeDetailsView extends StatelessWidget {
           Center(
             child: Text('${cake.description}'),
           ),
+          // TODO(Abid): Missing image display and proper layout structure
         ],
       ),
     );

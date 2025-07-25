@@ -13,6 +13,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('MyWidget', () {
+    // TODO(Abid): Should test actual widgets instead of generic examples
     testWidgets('should display a string of text', (WidgetTester tester) async {
       // Define a Widget
       const myWidget = MaterialApp(
