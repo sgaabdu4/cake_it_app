@@ -11,5 +11,5 @@ class Cake {
   final String imageUrl;
 
   @override
-  String toString() => 'CakeEntity(title: $title, description: $description, imageUrl: $imageUrl)';
+  String toString() => 'Cake(title: $title, description: $description, imageUrl: $imageUrl)';
 }

@@ -1,5 +1,4 @@
-// TODO(Abid): Does this need changing?
-import 'package:cake_it_app/features/cakes/domain/entities/cake_entity.dart';
+import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
 
 /// A placeholder class that represents an entity or model.
 class CakeModel {
