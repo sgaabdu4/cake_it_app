@@ -13,11 +13,4 @@ class CakeRepositoryImpl implements CakeRepository {
     final cakeModels = await _remoteDataSource.getCakes();
     return cakeModels.map((model) => model.toEntity()).toList();
   }
-  
-  @override
-  Future<List<Cake>> refreshCakes() async {
-    // TODO(Abid): This should clear cache if we're saving locally or refresh data from the source
-    // For now, refresh just calls getCakes again
-    return await getCakes();
-  }
 }

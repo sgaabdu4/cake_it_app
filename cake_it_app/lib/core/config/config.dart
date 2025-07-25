@@ -6,11 +6,6 @@ class AppConfig {
   
   // Network Configuration
   static const Duration networkTimeout = Duration(seconds: 30);
-  static const Duration retryDelay = Duration(seconds: 2);
-  static const int maxRetries = 3;
-  
-  // UI Configuration
-  static const Duration loadingDelay = Duration(seconds: 2); // TODO(Abid): Remove this artificial delay
   
   // App Information
   static const String appName = 'Cake It App';

@@ -18,17 +18,7 @@ class ServerFailure extends Failure {
   const ServerFailure(super.message);
 }
 
-/// Cache-related failures
-class CacheFailure extends Failure {
-  const CacheFailure(super.message);
-}
-
 /// Parsing-related failures
 class ParsingFailure extends Failure {
   const ParsingFailure(super.message);
-}
-
-/// Generic application failures
-class GeneralFailure extends Failure {
-  const GeneralFailure(super.message);
 }

@@ -1,4 +1,4 @@
-import 'package:cake_it_app/core/services/network_service.dart';
+import 'package:cake_it_app/core/network/network_service.dart';
 import 'package:cake_it_app/core/config/config.dart';
 import 'package:cake_it_app/core/error/failures.dart';
 import '../models/cake_model.dart';

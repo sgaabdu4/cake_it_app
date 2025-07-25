@@ -2,7 +2,7 @@ import 'package:cake_it_app/features/cakes/presentation/pages/cake_details_page.
 import 'package:cake_it_app/features/cakes/presentation/pages/cake_list_page.dart';
 import 'package:cake_it_app/features/settings/settings/settings_controller.dart';
 import 'package:cake_it_app/features/settings/settings/settings_view.dart';
-import 'package:cake_it_app/src/localization/app_localizations.dart';
+import 'package:cake_it_app/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
-          // TODO(Abid): Missing initialRoute
+          initialRoute: CakeListView.routeName,
 
           // Define a function to handle named routes in order to support
           // Flutter web url navigation and deep linking.
