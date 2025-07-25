@@ -1,4 +1,6 @@
 /// A placeholder class that represents an entity or model.
+
+// TODO(Abid): Does this need changing?
 class Cake {
   const Cake({
     this.title,

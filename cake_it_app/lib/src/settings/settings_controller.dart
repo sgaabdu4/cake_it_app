@@ -7,6 +7,7 @@ import 'settings_service.dart';
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
+// TODO(Abid): Need moving
 class SettingsController with ChangeNotifier {
   SettingsController(this._settingsService);
 
@@ -31,6 +32,7 @@ class SettingsController with ChangeNotifier {
   }
 
   /// Update and persist the ThemeMode based on the user's selection.
+  // TODO(Abid): Causing issues so need fixing
   Future<void> updateThemeMode(ThemeMode? newThemeMode) async {
     if (newThemeMode == null) return;
 
