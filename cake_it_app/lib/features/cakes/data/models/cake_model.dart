@@ -1,6 +1,5 @@
 import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
 
-/// A placeholder class that represents an entity or model.
 class CakeModel {
   const CakeModel({
     this.title,
@@ -20,7 +19,6 @@ class CakeModel {
     );
   }
 
-  /// Converts to domain entity
   Cake toEntity() {
     return Cake(
       title: title ?? '',

@@ -1,4 +1,3 @@
-/// Cake entity representing the business logic model
 class Cake {
   const Cake({
     required this.title,
@@ -11,5 +10,6 @@ class Cake {
   final String imageUrl;
 
   @override
-  String toString() => 'Cake(title: $title, description: $description, imageUrl: $imageUrl)';
+  String toString() =>
+      'Cake(title: $title, description: $description, imageUrl: $imageUrl)';
 }
