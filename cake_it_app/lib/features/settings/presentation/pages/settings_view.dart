@@ -40,7 +40,7 @@ class SettingsView extends StatelessWidget {
               child: Text('Light Theme'),
             ),
             DropdownMenuItem(
-              value: ThemeMode.light, // TODO(Abid): Should be ThemeMode.dark
+              value: ThemeMode.dark,
               child: Text('Dark Theme'),
             )
           ],
