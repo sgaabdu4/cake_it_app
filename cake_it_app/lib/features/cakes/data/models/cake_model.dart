@@ -1,7 +1,9 @@
 // TODO(Abid): Does this need changing?
+import 'package:cake_it_app/features/cakes/domain/entities/cake_entity.dart';
+
 /// A placeholder class that represents an entity or model.
-class Cake {
-  const Cake({
+class CakeModel {
+  const CakeModel({
     this.title,
     this.description,
     this.image,
@@ -11,13 +13,12 @@ class Cake {
   final String? description;
   final String? image;
 
-  factory Cake.fromJson(Map<String, dynamic> json) {
-    return Cake(
-      title: json['title'],
-      description: json['desc'],
-      image: json['image'],
+  factory CakeModel.fromJson(Map<String, dynamic> json) {
+    return CakeModel(
+      title: json['title']?.toString() ?? '',
+      description: json['desc']?.toString() ?? '',
+      image: json['image']?.toString() ?? '',
     );
-    // TODO(Abid): No validation or sanitisation
   }
 
   Map<String, dynamic> toJson() {
@@ -26,5 +27,14 @@ class Cake {
       'desc': description,
       'image': image,
     };
+  }
+
+  /// Converts to domain entity
+  Cake toEntity() {
+    return Cake(
+      title: title ?? '',
+      description: description ?? '',
+      imageUrl: image ?? '',
+    );
   }
 }
