@@ -1,5 +1,5 @@
 
-import 'package:cake_it_app/features/cakes/domain/entities/cake_entity.dart';
+import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
 
 /// Repository for cake data operations
 abstract interface class CakeRepository {
