@@ -1,10 +1,11 @@
-import 'package:cake_it_app/src/features/cake_details_view.dart';
-import 'package:cake_it_app/src/features/cake_list_view.dart';
+import 'package:cake_it_app/features/cakes/presentation/pages/cake_details_page.dart';
+import 'package:cake_it_app/features/cakes/presentation/pages/cake_list_page.dart';
+import 'package:cake_it_app/features/settings/settings/settings_controller.dart';
+import 'package:cake_it_app/features/settings/settings/settings_view.dart';
 import 'package:cake_it_app/src/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
+
 
 /// The Widget that configures your application.
 class MyApp extends StatelessWidget {
@@ -23,7 +24,6 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           restorationScopeId: 'app',
-          // Using auto-generated localization delegates and supported locales
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
 
