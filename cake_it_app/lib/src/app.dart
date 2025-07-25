@@ -2,7 +2,6 @@ import 'package:cake_it_app/src/features/cake_details_view.dart';
 import 'package:cake_it_app/src/features/cake_list_view.dart';
 import 'package:cake_it_app/src/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
@@ -24,16 +23,9 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           restorationScopeId: 'app',
-          // TODO(Abid): Double check docs for localization implementation
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en', ''), // English, no country code
-          ],
+          // Using auto-generated localization delegates and supported locales
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
 
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.appTitle,
