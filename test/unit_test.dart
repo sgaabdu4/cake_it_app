@@ -263,7 +263,7 @@ void main() {
     });
   });
 
-  group('CakeLocalDataSource Integration Tests', () {
+  group('CakeLocalDataSource Tests', () {
     late CakeLocalDataSource dataSource;
 
     setUp(() {
@@ -276,14 +276,14 @@ void main() {
       // Arrange
       const testCakes = [
         CakeModel(
-          title: 'Integration Test Cake 1',
+          title: 'Test Cake 1',
           description: 'Test Description 1',
-          image: 'https://example.com/integration1.jpg',
+          image: 'https://example.com/test1.jpg',
         ),
         CakeModel(
-          title: 'Integration Test Cake 2',
+          title: 'Test Cake 2',
           description: 'Test Description 2',
-          image: 'https://example.com/integration2.jpg',
+          image: 'https://example.com/test2.jpg',
         ),
       ];
 
@@ -297,8 +297,8 @@ void main() {
 
       final cachedCakes = await dataSource.getCachedCakes();
       expect(cachedCakes, hasLength(2));
-      expect(cachedCakes[0].title, 'Integration Test Cake 1');
-      expect(cachedCakes[1].title, 'Integration Test Cake 2');
+      expect(cachedCakes[0].title, 'Test Cake 1');
+      expect(cachedCakes[1].title, 'Test Cake 2');
 
       // Act & Assert - Clear cache
       await dataSource.clearCache();

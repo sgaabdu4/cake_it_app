@@ -3,7 +3,7 @@
 **Flutter 3.32.8**
 
 ## My Thoughts
-It's been a while since I used ChangeNotifier and did state management without the packages I normally reach for, so it took me a bit of time to think from a different perspective. Actually quite exciting working within these constraints, made me appreciate how the flutter ecosystem has evolved!
+It's been ages since I used ChangeNotifier without my usual packages, so it took me a bit to think differently. Actually quite interesting working within these constraints, made me appreciate how much the Flutter ecosystem has evolved! Built solid unit tests without mocking, even though I would've loved mocktail for testing the ChangeNotifier controllers and proper integration tests if I didn't have the constraint of not adding additional packages.
 
 ## What I Built
 
