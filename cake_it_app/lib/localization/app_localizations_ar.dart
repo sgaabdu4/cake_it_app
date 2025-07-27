@@ -87,4 +87,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String failedToFetchCakes({required String error}) {
     return 'فشل في جلب الكعك: $error';
   }
+
+  @override
+  String get description => 'الوصف';
 }

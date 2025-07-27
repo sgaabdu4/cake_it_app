@@ -22,5 +22,6 @@
     "requestTimeout": "انتهت مهلة الطلب",
     "serverError": "خطأ في الخادم: {statusCode}",
     "networkError": "خطأ في الشبكة: {error}",
-    "failedToFetchCakes": "فشل في جلب الكعك: {error}"
+    "failedToFetchCakes": "فشل في جلب الكعك: {error}",
+    "description": "الوصف"
 }

@@ -241,6 +241,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Failed to fetch cakes: {error}'**
   String failedToFetchCakes({required String error});
+
+  /// Label for description section
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
 }
 
 class _AppLocalizationsDelegate

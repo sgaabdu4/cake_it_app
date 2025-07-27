@@ -118,5 +118,9 @@
         "example": "Network error"
       }
     }
+  },
+  "description": "Description",
+  "@description": {
+    "description": "Label for description section"
   }
 }
