@@ -1,5 +1,7 @@
 # Tech Notes
 
+**Flutter 3.32.8**
+
 ## My Thoughts
 It's been a while since I used ChangeNotifier and did state management without the packages I normally reach for, so it took me a bit of time to think from a different perspective. Actually quite exciting working within these constraints, made me appreciate how the flutter ecosystem has evolved!
 
