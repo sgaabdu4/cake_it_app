@@ -56,7 +56,9 @@ class CakeDetailsView extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                cake.description.isNotEmpty ? cake.description : l10n.noDescriptionAvailable,
+                cake.description.isNotEmpty
+                    ? cake.description
+                    : l10n.noDescriptionAvailable,
               ),
             ],
           ),
