@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:cake_it_app/core/app_routes.dart';
 import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
-import 'package:cake_it_app/features/cakes/presentation/pages/cake_details_page.dart';
-import 'package:cake_it_app/features/cakes/presentation/pages/cake_list_page.dart';
+import 'package:cake_it_app/features/cakes/presentation/views/cake_details_view.dart';
+import 'package:cake_it_app/features/cakes/presentation/views/cake_list_view.dart';
 import 'package:cake_it_app/features/settings/presentation/controllers/settings_controller.dart';
-import 'package:cake_it_app/features/settings/presentation/pages/settings_view.dart';
+import 'package:cake_it_app/features/settings/presentation/views/settings_view.dart';
 import 'package:cake_it_app/core/extensions.dart';
 
 // type-safe routing - replaces navigator.pushNamed() string routing from initial repo
 class RouteGenerator {
   static Route<dynamic> generateRoute(
-      RouteSettings settings, SettingsController settingsController,) {
+    RouteSettings settings,
+    SettingsController settingsController,
+  ) {
     switch (settings.name) {
       case AppRoutes.home:
         return MaterialPageRoute(
@@ -41,7 +43,7 @@ class RouteGenerator {
             return Scaffold(
               appBar: AppBar(title: Text(l10n.notFound)),
               body: Center(
-                child: Text(l10n.pageNotFound),
+                child: Text(l10n.viewNotFound),
               ),
             );
           },

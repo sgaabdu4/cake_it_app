@@ -15,7 +15,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get notFound => 'Not Found';
 
   @override
-  String get pageNotFound => 'Page not found';
+  String get viewNotFound => 'Page not found';
 
   @override
   String failedToRefresh({required String error}) {

@@ -4,7 +4,7 @@ class AppStrings {
 
   static const String appTitle = 'appTitle';
   static const String notFound = 'notFound';
-  static const String pageNotFound = 'pageNotFound';
+  static const String viewNotFound = 'viewNotFound';
   static const String tryAgain = 'tryAgain';
   static const String settings = 'settings';
   static const String cakeDetails = 'cakeDetails';

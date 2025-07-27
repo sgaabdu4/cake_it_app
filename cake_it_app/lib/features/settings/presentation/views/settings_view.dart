@@ -10,7 +10,7 @@ class SettingsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = context.l10n;
-    
+
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.settings),
@@ -42,7 +42,6 @@ class SettingsView extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 24),
-            
             Text(l10n.language),
             const SizedBox(height: 8),
             DropdownButton<Locale?>(

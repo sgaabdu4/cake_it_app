@@ -1,26 +1,26 @@
 {
-  "appTitle": "🎂تطبيق الكيك🍰",
-  "notFound": "غير موجود",
-  "pageNotFound": "الصفحة غير موجودة",
-  "failedToRefresh": "فشل في التحديث: {error}",
-  "errorLoadingCakes": "خطأ في تحميل الكعك",
-  "tryAgain": "حاول مرة أخرى",
-  "unexpectedError": "حدث خطأ غير متوقع",
-  "failedToRefreshCakes": "فشل في تحديث الكعك",
-  "cakeDetails": "تفاصيل الكعكة",
-  "noCakeData": "لا توجد بيانات كعكة متاحة",
-  "noDescriptionAvailable": "لا يوجد وصف متاح",
-  "settings": "الإعدادات",
-  "theme": "المظهر",
-  "systemTheme": "مظهر النظام",
-  "lightTheme": "المظهر الفاتح",
-  "darkTheme": "المظهر الداكن",
-  "language": "اللغة",
-  "systemLanguage": "لغة النظام",
-  "english": "English",
-  "arabic": "العربية",
-  "requestTimeout": "انتهت مهلة الطلب",
-  "serverError": "خطأ في الخادم: {statusCode}",
-  "networkError": "خطأ في الشبكة: {error}",
-  "failedToFetchCakes": "فشل في جلب الكعك: {error}"
+    "appTitle": "🎂تطبيق الكيك🍰",
+    "notFound": "غير موجود",
+    "viewNotFound": "الصفحة غير موجودة",
+    "failedToRefresh": "فشل في التحديث: {error}",
+    "errorLoadingCakes": "خطأ في تحميل الكعك",
+    "tryAgain": "حاول مرة أخرى",
+    "unexpectedError": "حدث خطأ غير متوقع",
+    "failedToRefreshCakes": "فشل في تحديث الكعك",
+    "cakeDetails": "تفاصيل الكعكة",
+    "noCakeData": "لا توجد بيانات كعكة متاحة",
+    "noDescriptionAvailable": "لا يوجد وصف متاح",
+    "settings": "الإعدادات",
+    "theme": "المظهر",
+    "systemTheme": "مظهر النظام",
+    "lightTheme": "المظهر الفاتح",
+    "darkTheme": "المظهر الداكن",
+    "language": "اللغة",
+    "systemLanguage": "لغة النظام",
+    "english": "English",
+    "arabic": "العربية",
+    "requestTimeout": "انتهت مهلة الطلب",
+    "serverError": "خطأ في الخادم: {statusCode}",
+    "networkError": "خطأ في الشبكة: {error}",
+    "failedToFetchCakes": "فشل في جلب الكعك: {error}"
 }

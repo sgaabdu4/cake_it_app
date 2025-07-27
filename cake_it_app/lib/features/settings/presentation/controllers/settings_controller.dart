@@ -13,7 +13,7 @@ class SettingsController with ChangeNotifier {
 
   Future<void> loadSettings() async {
     final prefs = await SharedPreferences.getInstance();
-    
+
     // Load theme mode
     final themeModeString = prefs.getString(_themeModeKey);
     _themeMode = switch (themeModeString) {

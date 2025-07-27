@@ -17,5 +17,6 @@ class UnexpectedError implements AppError {
 
 class RefreshFailedError implements AppError {
   @override
-  String getLocalizedMessage(AppLocalizations l10n) => l10n.failedToRefreshCakes;
+  String getLocalizedMessage(AppLocalizations l10n) =>
+      l10n.failedToRefreshCakes;
 }

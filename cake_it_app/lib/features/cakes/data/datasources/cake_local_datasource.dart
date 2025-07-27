@@ -27,11 +27,13 @@ class CakeLocalDataSource {
     final prefs = await SharedPreferences.getInstance();
 
     final jsonList = cakes
-        .map((cake) => {
-              'title': cake.title,
-              'desc': cake.description,
-              'image': cake.image,
-            },)
+        .map(
+          (cake) => {
+            'title': cake.title,
+            'desc': cake.description,
+            'image': cake.image,
+          },
+        )
         .toList();
 
     final jsonString = json.encode(jsonList);

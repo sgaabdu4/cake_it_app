@@ -1,32 +1,88 @@
-// This is an example Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-//
-// Visit https://flutter.dev/docs/cookbook/testing/widget/introduction for
-// more information about Widget testing.
-
+import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
+import 'package:cake_it_app/features/cakes/presentation/views/cake_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('MyWidget', () {
-    // TODO(Abid): Should test actual widgets instead of generic examples
-    testWidgets('should display a string of text', (WidgetTester tester) async {
-      // Define a Widget
-      const myWidget = MaterialApp(
-        home: Scaffold(
-          body: Text('Hello'),
+  group('CakeDetailsView Widget Tests', () {
+    testWidgets('should display error message when no cake provided',
+        (WidgetTester tester) async {
+      // Arrange & Act
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CakeDetailsView(),
         ),
       );
 
-      // Build myWidget and trigger a frame.
-      await tester.pumpWidget(myWidget);
+      // Assert
+      expect(find.text('Cake Details'), findsOneWidget);
+      expect(find.text('No cake data provided'), findsOneWidget);
+    });
 
-      // Verify myWidget shows some text
-      expect(find.byType(Text), findsOneWidget);
+    testWidgets('should display cake details when cake provided through route',
+        (WidgetTester tester) async {
+      // Arrange
+      const testCake = Cake(
+        title: 'Test Cake',
+        description: 'This is a test cake description',
+        imageUrl: 'https://example.com/test.jpg',
+      );
+
+      // Create a custom route with the cake as arguments
+      final route = MaterialPageRoute(
+        settings: const RouteSettings(arguments: testCake),
+        builder: (context) => const CakeDetailsView(),
+      );
+
+      // Act
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Builder(
+              builder: (context) => Navigator(
+                onGenerateRoute: (settings) => route,
+                initialRoute: '/',
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      // Assert
+      expect(find.text('Test Cake'), findsWidgets);
+      expect(find.text('This is a test cake description'), findsOneWidget);
+      expect(find.text('Description'), findsOneWidget);
+    });
+
+    testWidgets('should display content in a scrollable view with cake data',
+        (WidgetTester tester) async {
+      // Arrange
+      const testCake = Cake(
+        title: 'Scrollable Test Cake',
+        description: 'This cake should be in a scrollable view',
+        imageUrl: 'https://example.com/scrollable.jpg',
+      );
+
+      final route = MaterialPageRoute(
+        settings: const RouteSettings(arguments: testCake),
+        builder: (context) => const CakeDetailsView(),
+      );
+
+      // Act
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Navigator(
+            onGenerateRoute: (settings) => route,
+            initialRoute: '/',
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      // Assert
+      expect(find.byType(SingleChildScrollView), findsOneWidget);
+      expect(find.text('Scrollable Test Cake'), findsWidgets);
     });
   });
 }

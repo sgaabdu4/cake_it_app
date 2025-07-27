@@ -15,7 +15,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get notFound => 'غير موجود';
 
   @override
-  String get pageNotFound => 'الصفحة غير موجودة';
+  String get viewNotFound => 'الصفحة غير موجودة';
 
   @override
   String failedToRefresh({required String error}) {

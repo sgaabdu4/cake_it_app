@@ -27,7 +27,7 @@ It's been a while since I used ChangeNotifier and did state management without t
 - Offline support so you can browse cakes without internet
 - Image caching with proper loading states
 - Error handling that actually helps users
-- Proper cake details page (not just a placeholder)
+- Proper cake details view (not just a placeholder)
 - Type safe navigation to avoid runtime crashes
 - Theme persistence for better user experience
 - Separated UI states into private widget classes for better performance with const constructors
@@ -65,6 +65,7 @@ It's been a while since I used ChangeNotifier and did state management without t
 
 ### Error Handling
 - **fpdart**: Love the Either pattern, forces you to think about errors properly
+- **Error Objects Implementation**: Structured AppError objects with clean architecture separation
 
 ### Local Storage
 - **vault_storage**: My own package for secure storage with encryption

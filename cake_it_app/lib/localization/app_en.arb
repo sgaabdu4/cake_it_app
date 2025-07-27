@@ -7,8 +7,8 @@
   "@notFound": {
     "description": "Page not found title"
   },
-  "pageNotFound": "Page not found",
-  "@pageNotFound": {
+  "viewNotFound": "Page not found",
+  "@viewNotFound": {
     "description": "Page not found message"
   },
   "failedToRefresh": "Failed to refresh: {error}",
@@ -39,7 +39,7 @@
   },
   "cakeDetails": "Cake Details",
   "@cakeDetails": {
-    "description": "Title for cake details page"
+    "description": "Title for cake details view"
   },
   "noCakeData": "No cake data provided",
   "@noCakeData": {
@@ -51,7 +51,7 @@
   },
   "settings": "Settings",
   "@settings": {
-    "description": "Settings page title"
+    "description": "Settings view title"
   },
   "theme": "Theme",
   "@theme": {

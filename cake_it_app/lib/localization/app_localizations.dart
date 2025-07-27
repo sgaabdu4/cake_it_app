@@ -114,7 +114,7 @@ abstract class AppLocalizations {
   ///
   /// In en, this message translates to:
   /// **'Page not found'**
-  String get pageNotFound;
+  String get viewNotFound;
 
   /// Error message when refresh fails
   ///
@@ -146,7 +146,7 @@ abstract class AppLocalizations {
   /// **'Failed to refresh cakes'**
   String get failedToRefreshCakes;
 
-  /// Title for cake details page
+  /// Title for cake details view
   ///
   /// In en, this message translates to:
   /// **'Cake Details'**
@@ -164,7 +164,7 @@ abstract class AppLocalizations {
   /// **'No description available'**
   String get noDescriptionAvailable;
 
-  /// Settings page title
+  /// Settings view title
   ///
   /// In en, this message translates to:
   /// **'Settings'**
