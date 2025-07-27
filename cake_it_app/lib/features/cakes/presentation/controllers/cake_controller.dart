@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cake_it_app/core/failures.dart';
+import 'package:cake_it_app/core/errors.dart';
 import 'package:cake_it_app/core/network_service.dart';
 import 'package:cake_it_app/features/cakes/data/datasources/cake_local_datasource.dart';
 import 'package:cake_it_app/features/cakes/data/datasources/cake_remote_datasource.dart';
@@ -21,14 +21,14 @@ class CakeController with ChangeNotifier {
 
   List<Cake> _cakes = [];
   bool _isLoading = false;
-  String? _errorMessage;
+  AppError? _error;
   DateTime? _lastLoadTime;
   static const Duration _cacheValidDuration = Duration(minutes: 5);
 
   List<Cake> get cakes => _cakes;
   bool get isLoading => _isLoading;
-  String? get errorMessage => _errorMessage;
-  bool get hasError => _errorMessage != null;
+  AppError? get error => _error;
+  bool get hasError => _error != null;
   bool get isEmpty => _cakes.isEmpty && !_isLoading;
 
   bool get _shouldRefreshCache {
@@ -50,7 +50,7 @@ class CakeController with ChangeNotifier {
       _setCakes(cakes);
       _lastLoadTime = DateTime.now();
     } catch (e) {
-      _setError(e is Failure ? e.message : 'An unexpected error occurred');
+      _setError(UnexpectedError());
     } finally {
       _setLoading(false);
     }
@@ -65,7 +65,7 @@ class CakeController with ChangeNotifier {
       _lastLoadTime = DateTime.now();
       _clearError();
     } catch (e) {
-      _setError(e is Failure ? e.message : 'Failed to refresh cakes');
+      _setError(RefreshFailedError());
       rethrow;
     }
   }
@@ -84,13 +84,13 @@ class CakeController with ChangeNotifier {
     notifyListeners();
   }
 
-  void _setError(String error) {
-    _errorMessage = error;
+  void _setError(AppError error) {
+    _error = error;
     notifyListeners();
   }
 
   void _clearError() {
-    _errorMessage = null;
+    _error = null;
     notifyListeners();
   }
 

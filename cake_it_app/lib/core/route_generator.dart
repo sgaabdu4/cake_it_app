@@ -5,6 +5,7 @@ import 'package:cake_it_app/features/cakes/presentation/pages/cake_details_page.
 import 'package:cake_it_app/features/cakes/presentation/pages/cake_list_page.dart';
 import 'package:cake_it_app/features/settings/presentation/controllers/settings_controller.dart';
 import 'package:cake_it_app/features/settings/presentation/pages/settings_view.dart';
+import 'package:cake_it_app/core/extensions.dart';
 
 // type-safe routing - replaces navigator.pushNamed() string routing from initial repo
 class RouteGenerator {
@@ -35,12 +36,15 @@ class RouteGenerator {
 
       default:
         return MaterialPageRoute(
-          builder: (_) => Scaffold(
-            appBar: AppBar(title: const Text('Not Found')),
-            body: const Center(
-              child: Text('Page not found'),
-            ),
-          ),
+          builder: (context) {
+            final l10n = context.l10n;
+            return Scaffold(
+              appBar: AppBar(title: Text(l10n.notFound)),
+              body: Center(
+                child: Text(l10n.pageNotFound),
+              ),
+            );
+          },
         );
     }
   }

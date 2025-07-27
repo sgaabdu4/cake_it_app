@@ -1,6 +1,122 @@
 {
-  "appTitle": "waracle_flutter_tech_test",
+  "appTitle": "🎂CakeItApp🍰",
   "@appTitle": {
     "description": "The title of the application"
+  },
+  "notFound": "Not Found",
+  "@notFound": {
+    "description": "Page not found title"
+  },
+  "pageNotFound": "Page not found",
+  "@pageNotFound": {
+    "description": "Page not found message"
+  },
+  "failedToRefresh": "Failed to refresh: {error}",
+  "@failedToRefresh": {
+    "description": "Error message when refresh fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
+  },
+  "errorLoadingCakes": "Error loading cakes",
+  "@errorLoadingCakes": {
+    "description": "Error message when cakes fail to load"
+  },
+  "tryAgain": "Try Again",
+  "@tryAgain": {
+    "description": "Button text to retry an action"
+  },
+  "unexpectedError": "An unexpected error occurred",
+  "@unexpectedError": {
+    "description": "Generic error message"
+  },
+  "failedToRefreshCakes": "Failed to refresh cakes",
+  "@failedToRefreshCakes": {
+    "description": "Error message when cake refresh fails"
+  },
+  "cakeDetails": "Cake Details",
+  "@cakeDetails": {
+    "description": "Title for cake details page"
+  },
+  "noCakeData": "No cake data provided",
+  "@noCakeData": {
+    "description": "Message when no cake data is available"
+  },
+  "noDescriptionAvailable": "No description available",
+  "@noDescriptionAvailable": {
+    "description": "Message when cake has no description"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": "Theme setting label"
+  },
+  "systemTheme": "System Theme",
+  "@systemTheme": {
+    "description": "System theme option"
+  },
+  "lightTheme": "Light Theme",
+  "@lightTheme": {
+    "description": "Light theme option"
+  },
+  "darkTheme": "Dark Theme",
+  "@darkTheme": {
+    "description": "Dark theme option"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language setting label"
+  },
+  "systemLanguage": "System Language",
+  "@systemLanguage": {
+    "description": "System language option"
+  },
+  "english": "English",
+  "@english": {
+    "description": "English language option"
+  },
+  "arabic": "العربية",
+  "@arabic": {
+    "description": "Arabic language option"
+  },
+  "requestTimeout": "Request timeout",
+  "@requestTimeout": {
+    "description": "Error message for request timeout"
+  },
+  "serverError": "Server error: {statusCode}",
+  "@serverError": {
+    "description": "Server error message with status code",
+    "placeholders": {
+      "statusCode": {
+        "type": "int",
+        "example": "500"
+      }
+    }
+  },
+  "networkError": "Network error: {error}",
+  "@networkError": {
+    "description": "Network error message",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Connection failed"
+      }
+    }
+  },
+  "failedToFetchCakes": "Failed to fetch cakes: {error}",
+  "@failedToFetchCakes": {
+    "description": "Error message when fetching cakes fails",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "Network error"
+      }
+    }
   }
 }

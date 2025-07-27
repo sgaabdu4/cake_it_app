@@ -20,16 +20,15 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           restorationScopeId: 'app',
-          // use auto-generated localisation delegates
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
+          locale: settingsController.locale,
           onGenerateTitle: (BuildContext context) =>
               AppLocalizations.of(context)!.appTitle,
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
           initialRoute: AppRoutes.home,
-          // use type-safe route generator instead of switch statement
           onGenerateRoute: (settings) =>
               RouteGenerator.generateRoute(settings, settingsController),
         );

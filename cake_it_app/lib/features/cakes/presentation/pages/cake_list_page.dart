@@ -1,6 +1,7 @@
 import 'package:cake_it_app/core/route_generator.dart';
 import 'package:cake_it_app/features/cakes/presentation/controllers/cake_controller.dart';
 import 'package:cake_it_app/features/cakes/presentation/widgets/cached_network_image.dart';
+import 'package:cake_it_app/core/extensions.dart';
 import 'package:flutter/material.dart';
 
 class CakeListView extends StatefulWidget {
@@ -33,9 +34,11 @@ class _CakeListViewState extends State<CakeListView> {
       await _controller.refreshCakes();
     } catch (e) {
       if (mounted) {
+        final l10n = context.l10n;
+        // simple error message - controller already sets the error state
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Failed to refresh: ${e.toString()}'),
+            content: Text(l10n.failedToRefreshCakes),
             backgroundColor: Colors.red,
           ),
         );
@@ -45,9 +48,11 @@ class _CakeListViewState extends State<CakeListView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    
     return Scaffold(
       appBar: AppBar(
-        title: const Text('🎂CakeItApp🍰'),
+        title: Text(l10n.appTitle),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -111,6 +116,8 @@ class _CakeErrorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -122,12 +129,12 @@ class _CakeErrorWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            'Error loading cakes',
+            l10n.errorLoadingCakes,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: 8),
           Text(
-            controller.errorMessage!,
+            controller.error!.getLocalizedMessage(l10n),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: Colors.grey[600],
@@ -136,7 +143,7 @@ class _CakeErrorWidget extends StatelessWidget {
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: controller.retry,
-            child: const Text('Try Again'),
+            child: Text(l10n.tryAgain),
           ),
         ],
       ),

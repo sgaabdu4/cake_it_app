@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
 import 'app_localizations_en.dart';
 
 // ignore_for_file: type=lint
@@ -92,13 +93,154 @@ abstract class AppLocalizations {
   ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('ar'),
+    Locale('en')
+  ];
 
   /// The title of the application
   ///
   /// In en, this message translates to:
-  /// **'waracle_flutter_tech_test'**
+  /// **'🎂CakeItApp🍰'**
   String get appTitle;
+
+  /// Page not found title
+  ///
+  /// In en, this message translates to:
+  /// **'Not Found'**
+  String get notFound;
+
+  /// Page not found message
+  ///
+  /// In en, this message translates to:
+  /// **'Page not found'**
+  String get pageNotFound;
+
+  /// Error message when refresh fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to refresh: {error}'**
+  String failedToRefresh({required String error});
+
+  /// Error message when cakes fail to load
+  ///
+  /// In en, this message translates to:
+  /// **'Error loading cakes'**
+  String get errorLoadingCakes;
+
+  /// Button text to retry an action
+  ///
+  /// In en, this message translates to:
+  /// **'Try Again'**
+  String get tryAgain;
+
+  /// Generic error message
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred'**
+  String get unexpectedError;
+
+  /// Error message when cake refresh fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to refresh cakes'**
+  String get failedToRefreshCakes;
+
+  /// Title for cake details page
+  ///
+  /// In en, this message translates to:
+  /// **'Cake Details'**
+  String get cakeDetails;
+
+  /// Message when no cake data is available
+  ///
+  /// In en, this message translates to:
+  /// **'No cake data provided'**
+  String get noCakeData;
+
+  /// Message when cake has no description
+  ///
+  /// In en, this message translates to:
+  /// **'No description available'**
+  String get noDescriptionAvailable;
+
+  /// Settings page title
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settings;
+
+  /// Theme setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get theme;
+
+  /// System theme option
+  ///
+  /// In en, this message translates to:
+  /// **'System Theme'**
+  String get systemTheme;
+
+  /// Light theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Light Theme'**
+  String get lightTheme;
+
+  /// Dark theme option
+  ///
+  /// In en, this message translates to:
+  /// **'Dark Theme'**
+  String get darkTheme;
+
+  /// Language setting label
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
+
+  /// System language option
+  ///
+  /// In en, this message translates to:
+  /// **'System Language'**
+  String get systemLanguage;
+
+  /// English language option
+  ///
+  /// In en, this message translates to:
+  /// **'English'**
+  String get english;
+
+  /// Arabic language option
+  ///
+  /// In en, this message translates to:
+  /// **'العربية'**
+  String get arabic;
+
+  /// Error message for request timeout
+  ///
+  /// In en, this message translates to:
+  /// **'Request timeout'**
+  String get requestTimeout;
+
+  /// Server error message with status code
+  ///
+  /// In en, this message translates to:
+  /// **'Server error: {statusCode}'**
+  String serverError({required int statusCode});
+
+  /// Network error message
+  ///
+  /// In en, this message translates to:
+  /// **'Network error: {error}'**
+  String networkError({required String error});
+
+  /// Error message when fetching cakes fails
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to fetch cakes: {error}'**
+  String failedToFetchCakes({required String error});
 }
 
 class _AppLocalizationsDelegate
@@ -112,7 +254,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['ar', 'en'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -121,6 +263,8 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
     case 'en':
       return AppLocalizationsEn();
   }

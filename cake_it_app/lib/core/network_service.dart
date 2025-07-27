@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:cake_it_app/core/config.dart';
+import 'package:cake_it_app/core/errors.dart';
 import 'package:cake_it_app/core/failures.dart';
 import 'package:http/http.dart' as http;
 
@@ -15,7 +16,7 @@ class NetworkService {
 
       final response = await _client.get(url).timeout(
             AppConfig.networkTimeout,
-            onTimeout: () => throw const Failure('Request timeout'),
+            onTimeout: () => throw NetworkTimeoutError(),
           );
 
       if (response.statusCode == 200) {

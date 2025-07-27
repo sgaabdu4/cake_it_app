@@ -12,11 +12,12 @@ class CakeDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cake = context.routeArguments<Cake>();
+    final l10n = context.l10n;
 
     if (cake == null) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Cake Details')),
-        body: const Center(child: Text('No cake data provided')),
+        appBar: AppBar(title: Text(l10n.cakeDetails)),
+        body: Center(child: Text(l10n.noCakeData)),
       );
     }
 
@@ -28,7 +29,6 @@ class CakeDetailsView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Hero image
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
                 child: CachedNetworkImage(
@@ -39,7 +39,6 @@ class CakeDetailsView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              // Title
               Text(
                 cake.title,
                 style: const TextStyle(
@@ -48,9 +47,8 @@ class CakeDetailsView extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16),
-              // Description
               Text(
-                cake.description.isNotEmpty ? cake.description : 'No description available',
+                cake.description.isNotEmpty ? cake.description : l10n.noDescriptionAvailable,
               ),
             ],
           ),
