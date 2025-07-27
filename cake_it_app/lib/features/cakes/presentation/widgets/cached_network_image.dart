@@ -46,13 +46,13 @@ class CachedNetworkImage extends StatelessWidget {
               height: height,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.grey[200],
+                  color: Colors.grey.shade200,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   Icons.broken_image,
-                  color: Colors.grey[400],
-                  size: (width != null && height != null)
+                  color: Colors.grey.shade400,
+                  size: (width != null && width!.isFinite && height != null && height!.isFinite)
                       ? (width! + height!) / 4
                       : 32,
                 ),

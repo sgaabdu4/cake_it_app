@@ -36,7 +36,7 @@ class CakeRepositoryImpl implements CakeRepository {
       if (cachedCakes.isNotEmpty) {
         return cachedCakes.map((model) => model.toEntity()).toList();
       }
-      rethrow; // no cached data available, throw original error
+      rethrow;
     }
   }
 
@@ -45,7 +45,6 @@ class CakeRepositoryImpl implements CakeRepository {
       final cakeModels = await _remoteDataSource.getCakes();
       await _localDataSource.cacheCakes(cakeModels);
     } catch (e) {
-      // background update failed - not critical for app functionality
       // could log this error in a real app
     }
   }

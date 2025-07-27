@@ -1,15 +1,17 @@
 import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
 import 'package:cake_it_app/features/cakes/presentation/views/cake_details_view.dart';
+import 'package:cake_it_app/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CakeDetailsView Widget Tests', () {
-    testWidgets('should display error message when no cake provided',
-        (WidgetTester tester) async {
+    testWidgets('should display error message when no cake provided', (WidgetTester tester) async {
       // Arrange & Act
       await tester.pumpWidget(
         const MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: CakeDetailsView(),
         ),
       );
@@ -19,8 +21,7 @@ void main() {
       expect(find.text('No cake data provided'), findsOneWidget);
     });
 
-    testWidgets('should display cake details when cake provided through route',
-        (WidgetTester tester) async {
+    testWidgets('should display cake details when cake provided through route', (WidgetTester tester) async {
       // Arrange
       const testCake = Cake(
         title: 'Test Cake',
@@ -37,6 +38,8 @@ void main() {
       // Act
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Scaffold(
             body: Builder(
               builder: (context) => Navigator(
@@ -55,8 +58,7 @@ void main() {
       expect(find.text('Description'), findsOneWidget);
     });
 
-    testWidgets('should display content in a scrollable view with cake data',
-        (WidgetTester tester) async {
+    testWidgets('should display content in a scrollable view with cake data', (WidgetTester tester) async {
       // Arrange
       const testCake = Cake(
         title: 'Scrollable Test Cake',
@@ -72,6 +74,8 @@ void main() {
       // Act
       await tester.pumpWidget(
         MaterialApp(
+          localizationsDelegates: AppLocalizations.localizationsDelegates,
+          supportedLocales: AppLocalizations.supportedLocales,
           home: Navigator(
             onGenerateRoute: (settings) => route,
             initialRoute: '/',
