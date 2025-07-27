@@ -50,7 +50,7 @@ class CakeController with ChangeNotifier {
       _setCakes(cakes);
       _lastLoadTime = DateTime.now();
     } catch (e) {
-      _setError(UnexpectedError());
+      _setError(e is AppError ? e : UnexpectedError());
     } finally {
       _setLoading(false);
     }
@@ -65,7 +65,7 @@ class CakeController with ChangeNotifier {
       _lastLoadTime = DateTime.now();
       _clearError();
     } catch (e) {
-      _setError(RefreshFailedError());
+      _setError(e is AppError ? e : RefreshFailedError());
       rethrow;
     }
   }

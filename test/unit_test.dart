@@ -1,4 +1,3 @@
-import 'package:cake_it_app/core/failures.dart';
 import 'package:cake_it_app/features/cakes/data/datasources/cake_local_datasource.dart';
 import 'package:cake_it_app/features/cakes/data/models/cake_model.dart';
 import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
@@ -226,50 +225,6 @@ void main() {
       expect(result[0].title, '');
       expect(result[0].description, '');
       expect(result[0].image, '');
-    });
-  });
-
-  group('Failure Tests', () {
-    test('should create Failure with message', () {
-      // Arrange
-      const message = 'Network error occurred';
-
-      // Act
-      const failure = Failure(message);
-
-      // Assert
-      expect(failure.message, message);
-      expect(failure.toString(), 'Failure: Network error occurred');
-    });
-
-    test('should handle empty failure message', () {
-      // Arrange
-      const message = '';
-
-      // Act
-      const failure = Failure(message);
-
-      // Assert
-      expect(failure.message, '');
-      expect(failure.toString(), 'Failure: ');
-    });
-
-    test('should be properly identified as Failure type', () {
-      // Arrange
-      const failure = Failure('Test error');
-
-      // Act & Assert
-      expect(failure, isA<Failure>());
-    });
-  });
-
-  group('CakeLocalDataSource Tests', () {
-    late CakeLocalDataSource dataSource;
-
-    setUp(() {
-      dataSource = CakeLocalDataSource();
-      // Clear shared preferences before each test
-      SharedPreferences.setMockInitialValues({});
     });
 
     test('should perform complete cache cycle correctly', () async {

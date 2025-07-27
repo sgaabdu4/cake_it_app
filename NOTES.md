@@ -21,7 +21,7 @@ It's been ages since I used ChangeNotifier without my usual packages, so it took
 - **AppNavigator**: Helper methods for type-safe navigation
 - **Context extensions**: Clean route argument access with `context.routeArguments<T>()`
 - **Feature folders**: Each feature is self contained with its own data/domain/presentation
-- **Core utilities**: Shared components like NetworkService, Failure classes, config
+- **Core utilities**: Shared components like NetworkService, AppError classes, config
 - **No more hardcoded navigation**: Proper Cake entity passing instead of fake JSON
 
 ### Key Features

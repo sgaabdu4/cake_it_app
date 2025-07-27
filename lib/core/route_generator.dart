@@ -66,7 +66,5 @@ class AppNavigator {
     return Navigator.pushNamed<T>(context, AppRoutes.settings);
   }
 
-  static Future<T?> pushHome<T>(BuildContext context) {
-    return Navigator.pushNamed<T>(context, AppRoutes.home);
-  }
+  // pushHome (Cake List) not needed as it's a default route
 }

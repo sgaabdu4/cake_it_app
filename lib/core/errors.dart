@@ -20,3 +20,33 @@ class RefreshFailedError implements AppError {
   String getLocalizedMessage(AppLocalizations l10n) =>
       l10n.failedToRefreshCakes;
 }
+
+class ServerError implements AppError {
+  final int statusCode;
+
+  const ServerError(this.statusCode);
+
+  @override
+  String getLocalizedMessage(AppLocalizations l10n) =>
+      l10n.serverError(statusCode: statusCode);
+}
+
+class NetworkError implements AppError {
+  final String message;
+
+  const NetworkError(this.message);
+
+  @override
+  String getLocalizedMessage(AppLocalizations l10n) =>
+      l10n.networkError(error: message);
+}
+
+class DataFetchError implements AppError {
+  final String message;
+
+  const DataFetchError(this.message);
+
+  @override
+  String getLocalizedMessage(AppLocalizations l10n) =>
+      l10n.failedToFetchCakes(error: message);
+}
