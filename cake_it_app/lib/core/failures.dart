@@ -1,3 +1,4 @@
+// custom error handling - replaces generic exception catching from initial repo
 class Failure {
   const Failure(this.message);
 

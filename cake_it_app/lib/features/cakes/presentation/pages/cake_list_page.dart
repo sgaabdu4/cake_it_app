@@ -1,53 +1,47 @@
-import 'dart:convert';
-
-import 'package:cake_it_app/src/features/cake.dart';
-import 'package:cake_it_app/src/features/cake_details_view.dart';
-import 'package:cake_it_app/src/settings/settings_view.dart';
+import 'package:cake_it_app/core/route_generator.dart';
+import 'package:cake_it_app/features/cakes/presentation/controllers/cake_controller.dart';
+import 'package:cake_it_app/features/cakes/presentation/widgets/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
-/// Displays a list of cakes.
-/// Hmmm Stateful Widget is used here, but it could be a StatelessWidget? // TODO(Abid): No we need the state.
 class CakeListView extends StatefulWidget {
   const CakeListView({
     super.key,
   });
-
-  // TODO(Abid): Should this be extracted?
-  static const routeName = '/';
 
   @override
   State<CakeListView> createState() => _CakeListViewState();
 }
 
 class _CakeListViewState extends State<CakeListView> {
-  List<Cake> cakes = [];
+  late final CakeController _controller;
 
   @override
   void initState() {
     super.initState();
-    fetchCakes();
+    _controller = CakeController();
+    _controller.loadCakes();
   }
 
-  // TODO(Abid): Should this be a separate service class?
-  // TODO(Abid): No separation of concerns... API call in the widget
-  // TODO(Abid): No try catch for loading and also failed requests
-  Future<void> fetchCakes() async {
-    // TODO(Abid): API URL should be moved to config file
-    final url = Uri.parse(
-        "https://gist.githubusercontent.com/hart88/79a65d27f52cbb74db7df1d200c4212b/raw/ebf57198c7490e42581508f4f40da88b16d784ba/cakeList");
-    final response = await http.get(url);
-    // TODO(Abid): What's the point of this delay?
-    await Future.delayed(const Duration(seconds: 2));
-    if (response.statusCode == 200) {
-      List<dynamic> decodedResponse = json.decode(response.body);
-      setState(() {
-        cakes = decodedResponse.map((cake) => Cake.fromJson(cake)).toList();
-      });
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onRefresh() async {
+    try {
+      await _controller.refreshCakes();
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Failed to refresh: ${e.toString()}'),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
     }
   }
-
-  // TODO(Abid): Add pull to refresh
 
   @override
   Widget build(BuildContext context) {
@@ -58,47 +52,140 @@ class _CakeListViewState extends State<CakeListView> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // Navigate to the settings page. If the user leaves and returns
-              // to the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
+              AppNavigator.pushSettings(context);
             },
           ),
         ],
       ),
-      // TODO(Abid): No loading state shown when fetching data
-      body: ListView.builder(
-        restorationId: 'cakeListView',
-        itemCount: cakes.length,
-        itemBuilder: (BuildContext context, int index) {
-          final cake = cakes[index];
-
-          return ListTile(
-              title: Text('${cake.title}'),
-              subtitle: Text('${cake.description}'),
-              // TODO(Abid): Should the image be loading when fetching?
-              leading: CircleAvatar(
-                // TODO(Abid): Would container with decoration be better?
-                child: Image.network(
-                  cakes[index]
-                      .image!, // TODO(Abid): Why are we using ! here? Need to implement loading or error handling
-                  // TODO(Abid): Missing error and loading for network image
-                ),
-              ),
-              onTap: () {
-                // TODO(Abid): Should pass actual cake data instead of hardcoded values
-                Navigator.restorablePushNamed(
-                  context,
-                  CakeDetailsView.routeName,
-                  arguments: const Cake(
-                    title: 'failed cake',
-                    description: 'soggy bottom',
-                    image: 'https://www.example.com',
-                  ).toJson(),
-                );
-              });
+      body: ListenableBuilder(
+        listenable: _controller,
+        builder: (context, child) {
+          return RefreshIndicator(
+            onRefresh: _onRefresh,
+            child: _CakeListBody(controller: _controller),
+          );
         },
       ),
+    );
+  }
+}
+
+class _CakeListBody extends StatelessWidget {
+  const _CakeListBody({
+    required this.controller,
+  });
+
+  final CakeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    if (controller.isLoading && controller.isEmpty) {
+      return const _CakeLoadingWidget();
+    }
+
+    if (controller.hasError && controller.isEmpty) {
+      return _CakeErrorWidget(controller: controller);
+    }
+
+    return _CakeListWidget(controller: controller);
+  }
+}
+
+class _CakeLoadingWidget extends StatelessWidget {
+  const _CakeLoadingWidget();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
+
+class _CakeErrorWidget extends StatelessWidget {
+  const _CakeErrorWidget({
+    required this.controller,
+  });
+
+  final CakeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.error_outline,
+            size: 64,
+            color: Colors.grey[400],
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Error loading cakes',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            controller.errorMessage!,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Colors.grey[600],
+                ),
+          ),
+          const SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: controller.retry,
+            child: const Text('Try Again'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CakeListWidget extends StatelessWidget {
+  const _CakeListWidget({
+    required this.controller,
+  });
+
+  final CakeController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      restorationId: 'cakeListView',
+      itemCount: controller.cakes.length,
+      itemBuilder: (BuildContext context, int index) {
+        final cake = controller.cakes[index];
+        return ListTile(
+          title: Text(cake.title),
+          subtitle: Text(cake.description),
+          leading: CircleAvatar(
+            backgroundColor: Colors.grey[200],
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: cake.imageUrl,
+                width: 40,
+                height: 40,
+                fit: BoxFit.cover,
+                placeholder: const SizedBox(
+                  width: 40,
+                  height: 40,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                ),
+                errorWidget: Icon(
+                  Icons.cake,
+                  color: Colors.grey[400],
+                ),
+              ),
+            ),
+          ),
+          onTap: () {
+            AppNavigator.pushCakeDetails(context, cake);
+          },
+        );
+      },
     );
   }
 }

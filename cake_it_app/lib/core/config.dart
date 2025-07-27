@@ -1,3 +1,4 @@
+// centralised configuration - extracted from hardcoded strings from before
 class AppConfig {
   static const String baseUrl = 'https://gist.githubusercontent.com';
   static const String cakesEndpoint =

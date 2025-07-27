@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:cake_it_app/core/app_routes.dart';
+import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
+import 'package:cake_it_app/features/cakes/presentation/pages/cake_details_page.dart';
+import 'package:cake_it_app/features/cakes/presentation/pages/cake_list_page.dart';
+import 'package:cake_it_app/features/settings/presentation/controllers/settings_controller.dart';
+import 'package:cake_it_app/features/settings/presentation/pages/settings_view.dart';
+
+// type-safe routing - replaces navigator.pushNamed() string routing from initial repo
+class RouteGenerator {
+  static Route<dynamic> generateRoute(
+      RouteSettings settings, SettingsController settingsController,) {
+    switch (settings.name) {
+      case AppRoutes.home:
+        return MaterialPageRoute(
+          builder: (_) => const CakeListView(),
+          settings: settings,
+        );
+
+      case AppRoutes.cakeDetails:
+        final cake = settings.arguments as Cake?;
+        return MaterialPageRoute(
+          builder: (_) => const CakeDetailsView(),
+          settings: RouteSettings(
+            name: settings.name,
+            arguments: cake,
+          ),
+        );
+
+      case AppRoutes.settings:
+        return MaterialPageRoute(
+          builder: (_) => SettingsView(controller: settingsController),
+          settings: settings,
+        );
+
+      default:
+        return MaterialPageRoute(
+          builder: (_) => Scaffold(
+            appBar: AppBar(title: const Text('Not Found')),
+            body: const Center(
+              child: Text('Page not found'),
+            ),
+          ),
+        );
+    }
+  }
+}
+
+// helper methods for type-safe navigation
+class AppNavigator {
+  static Future<T?> pushCakeDetails<T>(BuildContext context, Cake cake) {
+    return Navigator.pushNamed<T>(
+      context,
+      AppRoutes.cakeDetails,
+      arguments: cake,
+    );
+  }
+
+  static Future<T?> pushSettings<T>(BuildContext context) {
+    return Navigator.pushNamed<T>(context, AppRoutes.settings);
+  }
+
+  static Future<T?> pushHome<T>(BuildContext context) {
+    return Navigator.pushNamed<T>(context, AppRoutes.home);
+  }
+}

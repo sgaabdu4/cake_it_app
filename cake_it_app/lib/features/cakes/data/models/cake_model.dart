@@ -1,5 +1,6 @@
 import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
 
+// data transfer object - replaces direct json handling in ui from initial repo
 class CakeModel {
   const CakeModel({
     this.title,
