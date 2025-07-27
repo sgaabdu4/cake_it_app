@@ -18,7 +18,7 @@ class CakeLocalDataSource {
       return jsonList.map((json) => CakeModel.fromJson(json as Map<String, dynamic>)).toList();
     } catch (e) {
       debugPrint('Failed to parse cached cakes: $e');
-      // corrupted cache detected - clear it and return empty list
+      // corrupted cache - clear and return empty
       await clearCache();
       return [];
     }
@@ -37,7 +37,7 @@ class CakeLocalDataSource {
     }
   }
 
-  // unused but only used in tests
+  // used in tests
   Future<bool> hasCachedData() async {
     final prefs = await SharedPreferences.getInstance();
     return prefs.containsKey(_cakesKey);

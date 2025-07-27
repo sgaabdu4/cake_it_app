@@ -42,9 +42,9 @@ class CakeRepositoryImpl implements CakeRepository {
       final cakeModels = await _remoteDataSource.getCakes();
       await _localDataSource.cacheCakes(cakeModels);
     } catch (e) {
-      // log background cache update failures for debugging
+      // log background cache update failures
       debugPrint('Background cache update failed: $e');
-      // silent failure - don't propagate as this is background operation
+      // silent failure for background operation
     }
   }
 }

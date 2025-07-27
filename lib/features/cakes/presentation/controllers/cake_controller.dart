@@ -37,7 +37,7 @@ class CakeController with ChangeNotifier {
   }
 
   Future<void> loadCakes() async {
-    // caching - don't reload if we have recent data
+    // caching - don't reload recent data
     if (_cakes.isNotEmpty && !_shouldRefreshCache) {
       return;
     }

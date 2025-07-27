@@ -1,6 +1,6 @@
 import '../localization/app_localizations.dart';
 
-// structured error objects with localisation support for clean architecture
+// structured error objects with localisation
 abstract class AppError {
   String getLocalizedMessage(AppLocalizations l10n);
 }

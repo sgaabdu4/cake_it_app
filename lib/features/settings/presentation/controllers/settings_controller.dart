@@ -31,7 +31,7 @@ class SettingsController with ChangeNotifier {
       notifyListeners();
     } catch (e) {
       debugPrint('Failed to load settings: $e');
-      // settings load failed - use defaults and continue
+      // load failed - use defaults
       _themeMode = ThemeMode.system;
       _locale = null;
       notifyListeners();
@@ -55,7 +55,7 @@ class SettingsController with ChangeNotifier {
       await prefs.setString(_themeModeKey, themeModeString);
     } catch (e) {
       debugPrint('Failed to save theme mode: $e');
-      // settings save failed - UI updated but preference not persisted
+      // save failed - UI updated but not persisted
       return;
     }
   }
@@ -75,7 +75,7 @@ class SettingsController with ChangeNotifier {
       }
     } catch (e) {
       debugPrint('Failed to save locale: $e');
-      // settings save failed - UI updated but preference not persisted
+      // save failed - UI updated but not persisted
       return;
     }
   }

@@ -13,7 +13,7 @@ void main() async {
 
   // global error handling for uncaught exceptions
   FlutterError.onError = (FlutterErrorDetails details) {
-    // log the error with full stack trace
+    // log error with stack trace
     debugPrint('Flutter Error: ${details.exception}');
     debugPrint('Stack trace: ${details.stack}');
 
@@ -21,7 +21,7 @@ void main() async {
     // example: FirebaseCrashlytics.instance.recordFlutterError(details);
   }; 
   
-  // handle errors that occur outside of Flutter's error boundary
+    // handle errors outside Flutter boundary
   PlatformDispatcher.instance.onError = (error, stack) {
     debugPrint('Platform Error: $error');
     debugPrint('Stack trace: $stack');

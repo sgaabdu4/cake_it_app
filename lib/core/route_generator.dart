@@ -66,5 +66,5 @@ class AppNavigator {
     return Navigator.pushNamed<T>(context, AppRoutes.settings);
   }
 
-  // pushHome (Cake List) not needed as it's a default route
+  // pushHome not needed - default route
 }

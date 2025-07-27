@@ -25,7 +25,7 @@ class CachedNetworkImage extends StatelessWidget {
       width: width,
       height: height,
       fit: fit,
-      // flutter's built-in image caching - handle infinite values
+      // handle infinite cache values
       cacheWidth: width != null && width!.isFinite ? width!.toInt() : null,
       cacheHeight: height != null && height!.isFinite ? height!.toInt() : null,
       loadingBuilder: (context, child, loadingProgress) {
