@@ -34,6 +34,14 @@ It's been ages since I used ChangeNotifier without my usual packages, so it took
 - Theme persistence for better user experience
 - Separated UI states into private widget classes for better performance with const constructors
 
+### Error Handling Strategy
+- **Data errors**: Clean error screens with retry buttons (network issues, API failures)
+- **UI crashes**: Global error boundary catches widget build errors gracefully
+- **Silent failures**: Cache/JSON parsing errors return empty states instead of crashing
+- **User-friendly**: Only show errors users can act on, hide technical failures
+- **Layered approach**: NetworkService → Repository → Controller → UI, each handles appropriate errors
+- **No error spam**: Background operations fail silently, foreground operations show user feedback
+
 ### From Prototype to Production
 - **Original**: Everything in single files, hardcoded fake cake in details
 - **Now**: Feature first structure, real data flow, proper error states

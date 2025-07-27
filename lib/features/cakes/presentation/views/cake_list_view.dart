@@ -30,20 +30,7 @@ class _CakeListViewState extends State<CakeListView> {
   }
 
   Future<void> _onRefresh() async {
-    try {
-      await _controller.refreshCakes();
-    } catch (e) {
-      if (mounted) {
-        final l10n = context.l10n;
-        // simple error message - controller already sets the error state
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(l10n.failedToRefreshCakes),
-            backgroundColor: Colors.red,
-          ),
-        );
-      }
-    }
+    await _controller.refreshCakes();
   }
 
   @override

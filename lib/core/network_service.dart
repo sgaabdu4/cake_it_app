@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:cake_it_app/core/config.dart';
 import 'package:cake_it_app/core/errors.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 // injectable http client - replaces direct http.get() calls from initial repo
@@ -24,6 +25,7 @@ class NetworkService {
         throw ServerError(response.statusCode);
       }
     } catch (e) {
+      debugPrint('Error fetching $endpoint: $e');
       if (e is AppError) rethrow;
       throw NetworkError(e.toString());
     }

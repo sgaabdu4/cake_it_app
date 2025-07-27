@@ -15,12 +15,6 @@ class UnexpectedError implements AppError {
   String getLocalizedMessage(AppLocalizations l10n) => l10n.unexpectedError;
 }
 
-class RefreshFailedError implements AppError {
-  @override
-  String getLocalizedMessage(AppLocalizations l10n) =>
-      l10n.failedToRefreshCakes;
-}
-
 class ServerError implements AppError {
   final int statusCode;
 
@@ -39,14 +33,4 @@ class NetworkError implements AppError {
   @override
   String getLocalizedMessage(AppLocalizations l10n) =>
       l10n.networkError(error: message);
-}
-
-class DataFetchError implements AppError {
-  final String message;
-
-  const DataFetchError(this.message);
-
-  @override
-  String getLocalizedMessage(AppLocalizations l10n) =>
-      l10n.failedToFetchCakes(error: message);
 }

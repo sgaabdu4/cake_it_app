@@ -1,4 +1,7 @@
+import 'dart:ui';
+
 import 'package:cake_it_app/core/app_routes.dart';
+import 'package:cake_it_app/core/extensions.dart';
 import 'package:cake_it_app/core/route_generator.dart';
 import 'package:cake_it_app/localization/app_localizations.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +10,23 @@ import 'features/settings/presentation/controllers/settings_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // global error handling for uncaught exceptions
+  FlutterError.onError = (FlutterErrorDetails details) {
+    // log the error with full stack trace
+    debugPrint('Flutter Error: ${details.exception}');
+    debugPrint('Stack trace: ${details.stack}');
+
+    // in production, send to crash reporting service
+    // example: FirebaseCrashlytics.instance.recordFlutterError(details);
+  }; 
+  
+  // handle errors that occur outside of Flutter's error boundary
+  PlatformDispatcher.instance.onError = (error, stack) {
+    debugPrint('Platform Error: $error');
+    debugPrint('Stack trace: $stack');
+    return true; // the error was handled
+  };
 
   // initialise settings - removed SettingsService dependency
   final settingsController = SettingsController();
@@ -34,14 +54,24 @@ class MyApp extends StatelessWidget {
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           locale: settingsController.locale,
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.appTitle,
+          onGenerateTitle: (BuildContext context) => context.l10n.appTitle,
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
           initialRoute: AppRoutes.home,
-          onGenerateRoute: (settings) =>
-              RouteGenerator.generateRoute(settings, settingsController),
+          onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings, settingsController),
+          builder: (context, child) {
+            // global error boundary - catches widget build errors
+            ErrorWidget.builder = (FlutterErrorDetails details) {
+              return Scaffold(
+                appBar: AppBar(title: const Text('Oops!')),
+                body: const Center(
+                  child: Text('Something went wrong. Please restart the app.'),
+                ),
+              );
+            };
+            return child ?? const SizedBox();
+          },
         );
       },
     );

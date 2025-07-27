@@ -2,6 +2,7 @@ import 'package:cake_it_app/features/cakes/data/datasources/cake_local_datasourc
 import 'package:cake_it_app/features/cakes/data/datasources/cake_remote_datasource.dart';
 import 'package:cake_it_app/features/cakes/domain/entities/cake.dart';
 import 'package:cake_it_app/features/cakes/domain/repositories/cake_repository.dart';
+import 'package:flutter/foundation.dart';
 
 // repository pattern with cache-first strategy - replaces direct api calls from initial repo
 class CakeRepositoryImpl implements CakeRepository {
@@ -12,31 +13,27 @@ class CakeRepositoryImpl implements CakeRepository {
 
   @override
   Future<List<Cake>> getCakes() async {
-    // cache-first strategy for better performance
-    try {
-      final cachedCakes = await _localDataSource.getCachedCakes();
-      if (cachedCakes.isNotEmpty) {
-        // return cached data immediately, then update in background
-        _updateCacheInBackground();
-        return cachedCakes.map((model) => model.toEntity()).toList();
-      }
-    } catch (e) {
-      // could log this error in a real app
-      // cache read failed, continue to network
+    // try cache first
+    final cachedCakes = await _getCachedCakes();
+    if (cachedCakes.isNotEmpty) {
+      // return cached data immediately, update in background
+      _updateCacheInBackground();
+      return cachedCakes;
     }
 
-    // no cache or cache failed, fetch from network
+    // no cache, fetch from network
+    final cakeModels = await _remoteDataSource.getCakes();
+    await _localDataSource.cacheCakes(cakeModels);
+    return cakeModels.map((model) => model.toEntity()).toList();
+  }
+
+  Future<List<Cake>> _getCachedCakes() async {
     try {
-      final cakeModels = await _remoteDataSource.getCakes();
-      await _localDataSource.cacheCakes(cakeModels);
-      return cakeModels.map((model) => model.toEntity()).toList();
+      final cachedModels = await _localDataSource.getCachedCakes();
+      return cachedModels.map((model) => model.toEntity()).toList();
     } catch (e) {
-      // network failed, try cache as final fallback
-      final cachedCakes = await _localDataSource.getCachedCakes();
-      if (cachedCakes.isNotEmpty) {
-        return cachedCakes.map((model) => model.toEntity()).toList();
-      }
-      rethrow;
+      debugPrint('Failed to load cached cakes: $e');
+      return []; // cache read failed, return empty
     }
   }
 
@@ -45,7 +42,9 @@ class CakeRepositoryImpl implements CakeRepository {
       final cakeModels = await _remoteDataSource.getCakes();
       await _localDataSource.cacheCakes(cakeModels);
     } catch (e) {
-      // could log this error in a real app
+      // log background cache update failures for debugging
+      debugPrint('Background cache update failed: $e');
+      // silent failure - don't propagate as this is background operation
     }
   }
 }
