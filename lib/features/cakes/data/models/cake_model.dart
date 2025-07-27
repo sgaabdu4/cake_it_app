@@ -20,6 +20,14 @@ class CakeModel {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    return {
+      'title': title,
+      'desc': description,
+      'image': image,
+    };
+  }
+
   Cake toEntity() {
     return Cake(
       title: title ?? '',

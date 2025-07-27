@@ -14,9 +14,7 @@ class CakeLocalDataSource {
 
     try {
       final List<dynamic> jsonList = json.decode(cachedData);
-      return jsonList
-          .map((json) => CakeModel.fromJson(json as Map<String, dynamic>))
-          .toList();
+      return jsonList.map((json) => CakeModel.fromJson(json as Map<String, dynamic>)).toList();
     } catch (e) {
       // handle corrupted cache data (JSON parsing errors)
       return [];
@@ -26,15 +24,7 @@ class CakeLocalDataSource {
   Future<void> cacheCakes(List<CakeModel> cakes) async {
     final prefs = await SharedPreferences.getInstance();
 
-    final jsonList = cakes
-        .map(
-          (cake) => {
-            'title': cake.title,
-            'desc': cake.description,
-            'image': cake.image,
-          },
-        )
-        .toList();
+    final jsonList = cakes.map((cake) => cake.toJson()).toList();
 
     final jsonString = json.encode(jsonList);
     await prefs.setString(_cakesKey, jsonString);
