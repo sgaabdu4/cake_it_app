@@ -95,21 +95,28 @@ void main() {
       // When & Then
       expect(
         () => networkService.get(endpoint),
-        throwsA(isA<ServerError>().having((e) => e.statusCode, 'statusCode', 404)),
+        throwsA(
+          isA<ServerError>().having((e) => e.statusCode, 'statusCode', 404),
+        ),
       );
     });
 
-    test('should throw NetworkTimeoutError on timeout', () async {
-      // Given
-      const endpoint = '/test';
-      mockClient.setDelayResponse(const Duration(seconds: 31)); // Longer than timeout
+    test(
+      'should throw NetworkTimeoutError on timeout',
+      () async {
+        // Given
+        const endpoint = '/test';
+        mockClient.setDelayResponse(
+            const Duration(seconds: 31),); // Longer than timeout
 
-      // When & Then
-      expect(
-        () => networkService.get(endpoint),
-        throwsA(isA<NetworkTimeoutError>()),
-      );
-    }, timeout: const Timeout(Duration(seconds: 35)));
+        // When & Then
+        expect(
+          () => networkService.get(endpoint),
+          throwsA(isA<NetworkTimeoutError>()),
+        );
+      },
+      timeout: const Timeout(Duration(seconds: 35)),
+    );
 
     test('should throw NetworkError on other exceptions', () async {
       // Given

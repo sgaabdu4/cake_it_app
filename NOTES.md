@@ -62,6 +62,10 @@ It's been ages since I used ChangeNotifier without my usual packages, so it took
 - Proper memory management
 - Const optimization linting rules to catch performance improvements automatically
 
+### Platform Adaptation
+- Using adaptive widgets like `CircularProgressIndicator.adaptive()` to provide native iOS/macOS vs Material Design experiences automatically based on platform.
+- For Apple platforms, settings use native Cupertino action sheets instead of Material dropdowns to feel more at home on iOS/macOS.
+
 ## What I'd Use In Real Projects
 
 ### State Management

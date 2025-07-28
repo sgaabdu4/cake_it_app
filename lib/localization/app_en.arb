@@ -122,5 +122,9 @@
   "description": "Description",
   "@description": {
     "description": "Label for description section"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
   }
 }

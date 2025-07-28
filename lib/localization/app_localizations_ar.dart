@@ -90,4 +90,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get description => 'الوصف';
+
+  @override
+  String get cancel => 'إلغاء';
 }

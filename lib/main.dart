@@ -19,9 +19,9 @@ void main() async {
 
     // in production, send to crash reporting service
     // example: FirebaseCrashlytics.instance.recordFlutterError(details);
-  }; 
-  
-    // handle errors outside Flutter boundary
+  };
+
+  // handle errors outside Flutter boundary
   PlatformDispatcher.instance.onError = (error, stack) {
     debugPrint('Platform Error: $error');
     debugPrint('Stack trace: $stack');
@@ -59,7 +59,8 @@ class MyApp extends StatelessWidget {
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
           initialRoute: AppRoutes.home,
-          onGenerateRoute: (settings) => RouteGenerator.generateRoute(settings, settingsController),
+          onGenerateRoute: (settings) =>
+              RouteGenerator.generateRoute(settings, settingsController),
           builder: (context, child) {
             // global error boundary - catches widget build errors
             ErrorWidget.builder = (FlutterErrorDetails details) {

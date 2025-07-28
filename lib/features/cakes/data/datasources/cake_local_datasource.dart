@@ -15,7 +15,9 @@ class CakeLocalDataSource {
 
     try {
       final List<dynamic> jsonList = json.decode(cachedData);
-      return jsonList.map((json) => CakeModel.fromJson(json as Map<String, dynamic>)).toList();
+      return jsonList
+          .map((json) => CakeModel.fromJson(json as Map<String, dynamic>))
+          .toList();
     } catch (e) {
       debugPrint('Failed to parse cached cakes: $e');
       // corrupted cache - clear and return empty

@@ -47,7 +47,8 @@ void main() {
 
       // when network service encounters an error
       final badRemoteDataSource = CakeRemoteDataSource(NetworkService());
-      final testRepository = CakeRepositoryImpl(badRemoteDataSource, localDataSource);
+      final testRepository =
+          CakeRepositoryImpl(badRemoteDataSource, localDataSource);
 
       final result = await testRepository.getCakes();
 

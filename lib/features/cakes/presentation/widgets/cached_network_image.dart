@@ -35,7 +35,7 @@ class CachedNetworkImage extends StatelessWidget {
               width: width,
               height: height,
               child: const Center(
-                child: CircularProgressIndicator(strokeWidth: 2),
+                child: CircularProgressIndicator.adaptive(strokeWidth: 2),
               ),
             );
       },
