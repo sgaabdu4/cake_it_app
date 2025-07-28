@@ -53,9 +53,8 @@ It's been ages since I used ChangeNotifier without my usual packages, so it took
 - **Now**: Cache first strategy with SharedPreferences
 
 ### Testing
-- 26 tests because I believe in testing things properly
+- 16 tests passed - I haven't added integration tests due to package constraints
 - Good test coverage for confidence in changes
-- All green with zero warnings
 
 ### Performance
 - Smart caching so it doesn't overload the API
