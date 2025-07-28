@@ -60,7 +60,7 @@ It's been ages since I used ChangeNotifier without my usual packages, so it took
 - Smart caching so it doesn't overload the API
 - Background image loading for smooth scrolling
 - Proper memory management
-- Const optimization linting rules to catch performance improvements automatically
+- Const optimisation linting rules to catch performance improvements automatically
 
 ### Platform Adaptation
 - Using adaptive widgets like `CircularProgressIndicator.adaptive()` to provide native iOS/macOS vs Material Design experiences automatically based on platform.
