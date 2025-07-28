@@ -1,7 +1,7 @@
 import 'package:cake_it_app/core/network_service.dart';
 import 'package:cake_it_app/core/config.dart';
+import 'package:cake_it_app/features/cakes/data/models/cake_model.dart';
 import 'package:flutter/widgets.dart';
-import '../models/cake_model.dart';
 
 // remote data layer - replaces direct api calls in ui from initial repo
 class CakeRemoteDataSource {

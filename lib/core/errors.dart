@@ -1,6 +1,7 @@
-import '../localization/app_localizations.dart';
 
 // structured error objects with localisation
+import 'package:cake_it_app/localization/app_localizations.dart';
+
 abstract class AppError {
   String getLocalizedMessage(AppLocalizations l10n);
 }

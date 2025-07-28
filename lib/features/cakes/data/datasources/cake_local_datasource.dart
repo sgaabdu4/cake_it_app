@@ -1,7 +1,7 @@
 import 'dart:convert';
+import 'package:cake_it_app/features/cakes/data/models/cake_model.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/cake_model.dart';
 
 // local caching layer - new functionality not present in initial repo
 class CakeLocalDataSource {
